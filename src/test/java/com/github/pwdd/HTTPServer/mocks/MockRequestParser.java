@@ -9,6 +9,10 @@ public class MockRequestParser implements IRequestParser {
 
   @Override
   public HashMap<String, String> requestMap(BufferedReader request) {
-    return null;
+    return new HashMap<String, String>() {{
+      put("Method", "GET");
+      put("URI", "/hello");
+      put("Protocol", "HTTP/1.1");
+    }};
   }
 }
