@@ -24,7 +24,7 @@ public abstract class AProtocol {
     this.responders = _responders;
   }
 
-  public abstract InputStream errorMessage();
+  public abstract InputStream errorMessage(String date);
 
   public InputStream processResponse() throws IOException {
     String uri = request.get("URI");
@@ -34,14 +34,14 @@ public abstract class AProtocol {
         return buildFrom(responder.header(fullPath, dateInUTC0()), responder.body(fullPath));
       }
     }
-    return errorMessage();
+    return errorMessage(dateInUTC0());
   }
 
   private InputStream buildFrom(InputStream header, InputStream body) {
     return new SequenceInputStream(header, body);
   }
 
-  private String dateInUTC0() {
+  public String dateInUTC0() {
     ZonedDateTime date = ZonedDateTime.now(ZoneOffset.UTC);
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z");
     return dateFormat.format(date);

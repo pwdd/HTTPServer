@@ -12,5 +12,5 @@ public class MockProtocolImpl extends AProtocol {
     super(rootDirectory, request, responders);
   }
 
-  public InputStream errorMessage() { return new ByteArrayInputStream("HTTP/1.1 404 Not Found".getBytes()); }
+  public InputStream errorMessage(String date) { return new ByteArrayInputStream("HTTP/1.1 404 Not Found".getBytes()); }
 }
