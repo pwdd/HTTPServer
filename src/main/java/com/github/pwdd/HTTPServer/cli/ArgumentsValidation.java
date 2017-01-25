@@ -5,7 +5,16 @@ import java.util.List;
 
 public final class ArgumentsValidation {
   static final String defaultDir = "/public";
-  static final String defaultPortNumber = "8080";
+
+  public static String defaultPortNumber() {
+    String port = System.getenv("PORT");
+    if (port != null) {
+      return port;
+    } else {
+      return "8080";
+    }
+  }
+
 
   private ArgumentsValidation() {}
 
@@ -56,7 +65,7 @@ public final class ArgumentsValidation {
   }
 
   public static String getPortNumber(String[] args) {
-    return getArg(args, "-p", defaultPortNumber);
+    return getArg(args, "-p", defaultPortNumber());
   }
 
   private static String getArg(String[] args, String arg, String defaultResult) {

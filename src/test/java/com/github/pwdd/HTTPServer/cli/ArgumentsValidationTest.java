@@ -19,7 +19,7 @@ public class ArgumentsValidationTest {
   public void getDirTest() {
     String[] onlyDir = new String[] {"-d", "blob"};
     assertEquals("blob", ArgumentsValidation.getDirectory(onlyDir));
-    assertEquals(ArgumentsValidation.defaultPortNumber, ArgumentsValidation.getPortNumber(onlyDir));
+    assertEquals(ArgumentsValidation.defaultPortNumber(), ArgumentsValidation.getPortNumber(onlyDir));
   }
 
   @Test
